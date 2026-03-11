@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Recommender</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>🎬 AI Movie Recommendation System</h1>
+
+<form method="POST">
+
+<label for="movie">Select a Movie:</label>
+<input list="movies" name="movie" placeholder="Search a movie">
+
+<datalist id="movies">
+
+{% for movie in movie_list %}
+<option value="{{movie}}">
+{% endfor %}
+
+</datalist>
+
+
+<button type="submit">Recommend</button>
+
+</form>
+
+{% if names %}
+
+<div class="movies">
+
+{% for i in range(5) %}
+
+<div class="card">
+
+<img src="{{posters[i]}}" alt="{{names[i]}}">
+<h3>{{names[i]}}</h3>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+</body>
+</html>
